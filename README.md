@@ -6,9 +6,10 @@ this command line Java application will retrieve a random quote in that language
 from the Forismatic API found here: https://forismatic.com/en/api/
 
 ## How To Install and Run
-- Because Quotely is a self-contained uber JAR, no installation is necessary.
+- The inclusion of the Gradle wrapper scripts precludes the need for installation
+- A self-contained uber JAR is forthcoming.
 
-### Steps
+### Steps to Run
 1. Download and unzip `quotely-[version].zip`
 2. Run the OS-specific run script found in `quotely-[version]/bin` (see "Usage")
    

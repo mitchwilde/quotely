@@ -31,7 +31,7 @@ public class QuotelyTests {
 
     @Test
     public void forismaticUpTest() throws IOException, InterruptedException {
-        Properties testProps = QuotelyProperties.getProps();
+        Properties testProps = new QuotelyProperties().getProps();
         String testURL = testProps.getProperty(TEST_URL_PROP);
         try (HttpClient client = HttpClient.newBuilder()
                 .connectTimeout(Duration.ofSeconds(5))

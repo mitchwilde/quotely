@@ -41,7 +41,7 @@ public class Quotely {
                 System.out.println("InterruptedException: " + e);
             }
         } else {
-            System.out.println("Usage: java -jar quotely-[version].jar <language>(\"English\" OR \"Russian\")");
+            System.out.println("Usage: java -jar quotely-[version]-uber.jar <language>(\"English\" OR \"Russian\")");
         }
     }
 
@@ -56,7 +56,7 @@ public class Quotely {
         final String EN_PARAM = "en";
         final String RU_PARAM = "ru";
 
-        Properties props = QuotelyProperties.getProps();
+        Properties props = new QuotelyProperties().getProps();
         String baseURL =  props.getProperty("req.url.base");
         String method =  props.getProperty("req.api.method");
         String lang = (langArg.toLowerCase().startsWith(EN_PARAM)) ? EN_PARAM : RU_PARAM;

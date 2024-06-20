@@ -27,6 +27,47 @@ application {
     mainClass.set("com.quotely.Quotely")
 }
 
+tasks.clean.configure {
+    delete(layout.projectDirectory.dir("dist"))
+}
+
+
+
+distributions {
+    main {
+        contents {
+            from("README.md")
+        }
+    }
+}
+
+
+
+tasks.jar.configure {
+    archiveClassifier = "uber"
+    manifest {
+        attributes(
+            "Implementation-Title" to "Quotely",
+            "Implementation-Version" to archiveVersion,
+            "Main-Class" to "com.quotely.Quotely",
+            "Class-Path" to "jackson-annotations-2.17.1.jar jackson-core-2.17.1.jar jackson-databind-2.17.1.jar"
+        )
+    }
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
+    from(sourceSets.main.get().output)
+    dependsOn(configurations.runtimeClasspath)
+    from({
+        configurations.runtimeClasspath.get().filter {
+            it.name.endsWith("jar") }.map { zipTree(it) }
+    })
+}
+tasks.register<Copy>("copyDist") {
+    dependsOn(tasks.distZip)
+    mustRunAfter(tasks.distZip)
+    from(layout.buildDirectory.dir("distributions"))
+    into(layout.projectDirectory.dir("dist"))
+}
+
 tasks {
     val run by existing(JavaExec::class)
 
@@ -46,34 +87,6 @@ tasks {
             }
         }
         finalizedBy(run)
-    }
-}
-
-distributions {
-    main {
-        contents {
-            from("README.md")
-        }
-    }
-}
-
-tasks.register<Jar>("uberJar") {
-    archiveClassifier = "uber"
-    from(sourceSets.main.get().output)
-    dependsOn(configurations.runtimeClasspath)
-    from({
-        configurations.runtimeClasspath.get().filter {
-            it.name.endsWith("jar") }.map { zipTree(it) }
-    })
-}
-tasks.jar {
-    manifest {
-        attributes(
-            "Implementation-Title" to "Quotely",
-            "Implementation-Version" to archiveVersion,
-            "Main-Class" to "com.quotely.Quotely",
-            "Class-Path" to "jackson-annotations-2.17.1.jar jackson-core-2.17.1.jar jackson-databind-2.17.1.jar"
-        )
     }
 }
 
