@@ -7,18 +7,20 @@ from the Forismatic API found here: https://forismatic.com/en/api/
 
 ## How To Install and Run
 - The inclusion of the Gradle wrapper scripts precludes the need for installation
-- A self-contained uber JAR is forthcoming.
+- A self-contained uber JAR is included as well (see below for instructions).
 
 ### Steps to Run
-1. Download and unzip `quotely-[version].zip`
+1. Download and unzip `dist/quotely-[version].zip`
 2. Run the OS-specific run script found in `quotely-[version]/bin` (see "Usage")
+3. Alternatively, from `quotely-[version]/lib/` run `java -jar quotely-[version].jar <language>`*
    
 ### Usage
 #### Unix/macOS
-`./quotely <language>`*
+`% ./quotely <language>`*
 #### Windows
-`./quotely.bat <language>`*
-*Required: `<language>` = `en` or `ru`
+`$ ./quotely.bat <language>`*
+
+***Required**: `<language>` = `en` or `ru`
 
 #### Example
 `% ./quotely en
@@ -28,8 +30,8 @@ Neither genius, fame, nor love show the greatness of the soul. Only kindness can
 - Download/clone source code:
 - Build: `./gradlew build`
 - Run: 
-  - English quote -> `./gradlew runEng` OR `./gradlew run --args="en"`
-  - Russian quote -> `./gradlew runRus` OR `./gradlew run --args="ru"`
+  - English quote -> `./gradlew runEng` OR `./gradlew run --args="English"`
+  - Russian quote -> `./gradlew runRus` OR `./gradlew run --args="Russian"`
 - Run Tests: `./gradlew test`
 
 ## Design Considerations
