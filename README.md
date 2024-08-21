@@ -37,3 +37,17 @@ Neither genius, fame, nor love show the greatness of the soul. Only kindness can
 ## Design Considerations
 - Quotely currently runs synchronously using HttpClient (Java 22)
 - Asynchronous calls to the Forismatic API could be easily implemented if the project were expanded to include a feature to fetch multiple quotes.
+
+
+## To-Do
+1. Default to English if no args
+2. Add Validation class
+3. Reduce main class bloat -> create separate processor/service class
+4. Create interface for Forismatic API (Done)
+5. Add check for Forismatic service availability/address potential Forismatic API failure
+6. Add Logger
+7. Add Javadocs to each method
+8. Place property files outside of jar
+9. Consider using a factory design pattern or AOP
+10. Write one test per method
+11. Consider converting to Maven
